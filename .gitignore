@@ -1,0 +1,6 @@
+secuencial/bfs_secuencial
+secuencial/bfs_secuencial.exe
+paralelo/bfs_paralelo
+paralelo/bfs_paralelo.exe
+*.o
+*.out
