@@ -42,6 +42,8 @@ tiempo de ejecución.
 - **Parte 1 (lista):** estructura del repo, generador de grafo compartido
   (`common/graph_gen.h`), implementación secuencial (`secuencial/`),
   Makefile y esqueleto del informe.
-- **Parte 2 (pendiente):** implementación paralela con OpenMP
-  (`paralelo/`) y las secciones de estrategia/resultados del informe.
-  Instrucciones completas en [`INSTRUCCIONES-PARTE2.md`](INSTRUCCIONES-PARTE2.md).
+- **Parte 2 (lista):** implementación paralela con OpenMP
+  (`paralelo/bfs_paralelo.c`), verificada contra la versión secuencial
+  (misma semilla ⇒ misma distancia). Pendiente: cada integrante debe
+  correr sus propios benchmarks de speedup/eficiencia y llenar la tabla
+  de `docs/informe.md` con sus evidencias (`docs/evidencia/`).
