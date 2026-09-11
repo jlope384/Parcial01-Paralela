@@ -63,15 +63,14 @@ seed=42).
 
 | Threads | Tiempo secuencial (s) | Tiempo paralelo (s) | Speedup | Eficiencia |
 |---------|------------------------|----------------------|---------|------------|
-| 1       | 0.132032               | 0.379969             | 0.35    | 0.35       |
-| 2       | 0.132032               | 0.207729             | 0.64    | 0.32       |
-| 4       | 0.132032               | 0.117606             | 1.12    | 0.28       |
-| 8       | 0.132032               | 0.087509             | 1.51    | 0.19       |
+| 1       | 0.113807               | 0.343715             | 0.33    | 0.33       |
+| 2       | 0.113807               | 0.162620             | 0.70    | 0.35       |
+| 4       | 0.113807               | 0.086607             | 1.31    | 0.33       |
+| 8       | 0.113807               | 0.058880             | 1.93    | 0.24       |
 
 - Speedup = tiempo_secuencial / tiempo_paralelo
 - Eficiencia = Speedup / n_threads
-- Evidencia: `docs/evidencia/evidencia-javier-lopez.png` (pendiente de
-  adjuntar — ver instrucciones abajo).
+- Evidencia: `docs/evidencia/evidencia-javier-lopez.png`.
 
 ### Integrante 2: Javier Cifuentes
 
@@ -119,9 +118,9 @@ respecto al ideal (speedup = n_threads):
   porque el trabajo por nivel amortiza mejor el overhead fijo.
 - **Comparación entre máquinas:** la corrida de Javier López (Windows 11
   + WSL2, 16 cores lógicos expuestos) muestra la misma tendencia
-  cualitativa — 1 thread más lento que el secuencial (0.35x) y eficiencia
-  decreciente al subir threads (0.35 → 0.19) — pero con overhead relativo
-  mayor que en el Apple M3 (0.83x a 1 thread). Es consistente con correr
-  sobre una VM (WSL2), donde el scheduler del hipervisor y el overhead
-  extra de virtualización pesan más sobre las regiones paralelas que se
-  crean en cada nivel del BFS.
+  cualitativa — 1 thread más lento que el secuencial (0.33x) y eficiencia
+  máxima en 2 threads (0.35) que luego decae (0.33 → 0.24 con 8) — pero
+  con overhead relativo mayor que en el Apple M3 (0.83x a 1 thread). Es
+  consistente con correr sobre una VM (WSL2), donde el scheduler del
+  hipervisor y el overhead extra de virtualización pesan más sobre las
+  regiones paralelas que se crean en cada nivel del BFS.
