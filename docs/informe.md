@@ -50,16 +50,32 @@
 
 ## 3. Resultados y Métricas (por integrante)
 
-Cada integrante debe correr ambas versiones con el mismo tamaño de grafo
-y reportar sus propias mediciones. **Nota:** los datos de esta sección
-son una corrida de referencia (n=5,000,000, origen=0, destino=n-1,
-seed=42, promedio de 3 repeticiones) hecha en una sola máquina (Apple
-M3, 8 cores, macOS). Cada integrante debe **reemplazar su tabla** con
-sus propias mediciones y su propio screenshot/video — es el requisito
-individual del examen; los comandos exactos están en
-`docs/evidencia/comandos.md`.
+Cada integrante corrió ambas versiones con el mismo tamaño de grafo
+(n=5,000,000, origen=0, destino=4999999, seed=42) usando los comandos de
+`docs/evidencia/comandos.md`, en su propia máquina — es el requisito
+individual del examen.
 
-### Integrante 1: [Nombre completo]
+### Integrante 1: Javier López
+
+Máquina: Windows 11 + WSL2 (Ubuntu, gcc 15.2.0). Corrida con los comandos
+de `docs/evidencia/comandos.md` (n=5,000,000, origen=0, destino=4999999,
+seed=42).
+
+| Threads | Tiempo secuencial (s) | Tiempo paralelo (s) | Speedup | Eficiencia |
+|---------|------------------------|----------------------|---------|------------|
+| 1       | 0.132032               | 0.379969             | 0.35    | 0.35       |
+| 2       | 0.132032               | 0.207729             | 0.64    | 0.32       |
+| 4       | 0.132032               | 0.117606             | 1.12    | 0.28       |
+| 8       | 0.132032               | 0.087509             | 1.51    | 0.19       |
+
+- Speedup = tiempo_secuencial / tiempo_paralelo
+- Eficiencia = Speedup / n_threads
+- Evidencia: `docs/evidencia/evidencia-javier-lopez.png` (pendiente de
+  adjuntar — ver instrucciones abajo).
+
+### Integrante 2: Javier Cifuentes
+
+Máquina: Apple M3, 8 cores, macOS (promedio de 3 repeticiones).
 
 | Threads | Tiempo secuencial (s) | Tiempo paralelo (s) | Speedup | Eficiencia |
 |---------|------------------------|----------------------|---------|------------|
@@ -68,22 +84,8 @@ individual del examen; los comandos exactos están en
 | 4       | 0.172895               | 0.061275             | 2.82    | 0.71       |
 | 8       | 0.172895               | 0.050289             | 3.44    | 0.43       |
 
-- Speedup = tiempo_secuencial / tiempo_paralelo
-- Eficiencia = Speedup / n_threads
-- [Reemplazar con tu propia corrida y adjuntar screenshot/video en
-  `docs/evidencia/`.]
-
-### Integrante 2: [Nombre completo]
-
-| Threads | Tiempo secuencial (s) | Tiempo paralelo (s) | Speedup | Eficiencia |
-|---------|------------------------|----------------------|---------|------------|
-| 1       |                        |                      |         |            |
-| 2       |                        |                      |         |            |
-| 4       |                        |                      |         |            |
-| 8       |                        |                      |         |            |
-
-- [Correr los mismos comandos en tu propia máquina y adjuntar
-  screenshot/video de las ejecuciones en `docs/evidencia/`.]
+- Evidencia: `docs/evidencia/evidencia-javier-cifuentes.png` (pendiente
+  de confirmar que corresponda a esta corrida).
 
 ### Análisis
 
@@ -115,3 +117,11 @@ respecto al ideal (speedup = n_threads):
   al secuencial) aparece en grafos de varios millones de nodos; con
   grafos aún más grandes se espera que la eficiencia mejore ligeramente
   porque el trabajo por nivel amortiza mejor el overhead fijo.
+- **Comparación entre máquinas:** la corrida de Javier López (Windows 11
+  + WSL2, 16 cores lógicos expuestos) muestra la misma tendencia
+  cualitativa — 1 thread más lento que el secuencial (0.35x) y eficiencia
+  decreciente al subir threads (0.35 → 0.19) — pero con overhead relativo
+  mayor que en el Apple M3 (0.83x a 1 thread). Es consistente con correr
+  sobre una VM (WSL2), donde el scheduler del hipervisor y el overhead
+  extra de virtualización pesan más sobre las regiones paralelas que se
+  crean en cada nivel del BFS.

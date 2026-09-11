@@ -1,8 +1,8 @@
-# [Nombre Consultora HPC]
+# López & Cifuentes HPC
 
 **Integrantes:**
-- [Nombre completo Integrante 1]
-- [Nombre completo Integrante 2]
+- Javier López
+- Javier Cifuentes
 
 **Grupo 12 — Problema 4: Búsqueda de Ruta Mínima (Grafos)**
 
@@ -23,7 +23,7 @@ miles) usando BFS por niveles, secuencial y paralelizado con OpenMP.
 
 ```
 make            # compila la version secuencial
-make paralelo   # una vez exista paralelo/bfs_paralelo.c (Parte 2)
+make paralelo   # compila la version paralela (OpenMP)
 make clean
 ```
 
