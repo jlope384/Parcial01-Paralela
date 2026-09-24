@@ -1,6 +1,16 @@
 CC = gcc
 CFLAGS = -O2 -Wall
-OMPFLAGS = -fopenmp
+
+# En Linux/WSL, gcc trae soporte OpenMP con -fopenmp. En macOS, "gcc" es
+# en realidad Apple Clang, que no soporta -fopenmp directamente: hace
+# falta libomp (brew install libomp) y flags distintos.
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	OMP_PREFIX := $(shell brew --prefix libomp 2>/dev/null)
+	OMPFLAGS = -Xpreprocessor -fopenmp -I$(OMP_PREFIX)/include -L$(OMP_PREFIX)/lib -lomp
+else
+	OMPFLAGS = -fopenmp
+endif
 
 all: secuencial
 
@@ -9,7 +19,6 @@ secuencial: secuencial/bfs_secuencial
 secuencial/bfs_secuencial: secuencial/bfs_secuencial.c common/graph_gen.h
 	$(CC) $(CFLAGS) -o $@ secuencial/bfs_secuencial.c
 
-# paralelo/bfs_paralelo.c todavia no existe (Parte 2, ver INSTRUCCIONES-PARTE2.md).
 paralelo: paralelo/bfs_paralelo
 
 paralelo/bfs_paralelo: paralelo/bfs_paralelo.c common/graph_gen.h

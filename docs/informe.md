@@ -72,9 +72,10 @@ seed=42).
 - Eficiencia = Speedup / n_threads
 - Evidencia: `docs/evidencia/evidencia-javier-lopez.png`.
 
-### Integrante 2: Javier Cifuentes
+
 
 Máquina: Apple M3, 8 cores, macOS (promedio de 3 repeticiones).
+### Integrante 2: Javier Cifuentes
 
 | Threads | Tiempo secuencial (s) | Tiempo paralelo (s) | Speedup | Eficiencia |
 |---------|------------------------|----------------------|---------|------------|
@@ -85,6 +86,10 @@ Máquina: Apple M3, 8 cores, macOS (promedio de 3 repeticiones).
 
 - Evidencia: `docs/evidencia/evidencia-javier-cifuentes.png` (pendiente
   de confirmar que corresponda a esta corrida).
+- Speedup = tiempo_secuencial / tiempo_paralelo
+- Eficiencia = Speedup / n_threads
+
+
 
 ### Análisis
 

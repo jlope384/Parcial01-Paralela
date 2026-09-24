@@ -14,18 +14,17 @@ make
 make paralelo
 ```
 
-(Necesitas `gcc` con soporte OpenMP: en Linux/WSL suele venir por defecto;
-en Windows usa MinGW-w64. En macOS con Apple Clang, si `make paralelo`
-falla por `-fopenmp`, instala `libomp` con Homebrew y compila así en su
-lugar:
+Necesitas soporte de OpenMP:
 
-```bash
-brew install libomp
-clang -O2 -Wall -Xpreprocessor -fopenmp \
-  -I$(brew --prefix libomp)/include -L$(brew --prefix libomp)/lib -lomp \
-  -o paralelo/bfs_paralelo paralelo/bfs_paralelo.c
-```
-)
+- **Linux/WSL:** `gcc` normalmente ya lo trae.
+- **Windows:** usa MinGW-w64.
+- **macOS:** `gcc` es en realidad Apple Clang, que no soporta `-fopenmp`
+  directamente. El `Makefile` ya detecta macOS y usa los flags correctos
+  automáticamente, pero primero necesitas instalar `libomp` una vez:
+
+  ```bash
+  brew install libomp
+  ```
 
 ## 2. Correr las 5 ejecuciones que van en la tabla del informe
 
